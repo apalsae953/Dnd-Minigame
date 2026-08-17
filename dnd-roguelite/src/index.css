@@ -1,0 +1,141 @@
+/* =============================================================
+   index.css — Estilos globales del juego (Tipografía Nítida y Legible)
+   Crónicas de la Marca Oscura · Inter (Lectura) + Cinzel (Títulos)
+============================================================= */
+@import "tailwindcss";
+
+:root {
+  --gold:        #c9a84c;
+  --gold-light:  #f0c96f;
+  --gold-dark:   #7a5e1e;
+  --crimson:     #e74c3c;
+  --parchment:   #f3f4f6;
+  --obsidian:    #0d0d11;
+  --panel-bg:    #16161d;
+  --panel-border: rgba(201, 168, 76, 0.25);
+  --panel-hover:  #1e1e26;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0d0d11;
+  color: #f3f4f6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Clases de tipografía específicas ── */
+.font-title {
+  font-family: 'Cinzel', 'Georgia', serif;
+}
+.font-decorative {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+}
+.font-narrative {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+/* ── Scrollbar de lujo ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #0d0d11; }
+::-webkit-scrollbar-thumb  { background: #7a5e1e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a84c; }
+
+/* ── Animaciones ── */
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rollDice {
+  0%   { transform: rotate(0deg) scale(0.85); }
+  25%  { transform: rotate(90deg) scale(1.1); }
+  50%  { transform: rotate(180deg) scale(0.9); }
+  75%  { transform: rotate(270deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(240, 201, 111, 0.2); }
+  50%      { box-shadow: 0 0 25px rgba(240, 201, 111, 0.45); }
+}
+
+.animate-fade-up  { animation: fadeUp .5s ease both; }
+.animate-pop-in   { animation: popIn .35s cubic-bezier(.34,1.56,.64,1) both; }
+.animate-float    { animation: float 3.5s ease-in-out infinite; }
+.animate-dice-roll{ animation: rollDice .75s ease-out both; }
+.animate-pulse-glow { animation: pulseGlow 2s infinite ease-in-out; }
+
+/* ── Botón dorado principal ── */
+.btn-gold {
+  background: linear-gradient(135deg, #6b4f1a, #c9a84c, #f0c96f, #c9a84c, #6b4f1a);
+  background-size: 300% auto;
+  color: #090910;
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: .06em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  animation: shimmer 3s linear infinite;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.btn-gold:hover {
+  background-position: right center;
+  box-shadow: 0 0 20px rgba(201,168,76,.6);
+  transform: translateY(-2px);
+}
+.btn-gold:disabled {
+  opacity: .35; cursor: not-allowed;
+  animation: none; transform: none; box-shadow: none;
+}
+
+/* ── Paneles de alto contraste ── */
+.glass-panel {
+  background-color: #16161d;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65);
+}
+
+.glass-panel-hover {
+  transition: all .25s ease;
+}
+.glass-panel-hover:hover {
+  border-color: rgba(201, 168, 76, 0.55);
+  background-color: #1b1b24;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201, 168, 76, 0.15);
+}
+
+/* ── Separador rúnico ── */
+.rune-divider {
+  display: flex; align-items: center; gap: .75rem;
+  color: rgba(201, 168, 76, 0.45); font-size: .8rem;
+  margin: 1rem 0;
+}
+.rune-divider::before,
+.rune-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+}
